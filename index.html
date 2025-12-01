@@ -216,8 +216,27 @@
         .appointment-selected {
             background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
             color: white !important;
-            transform: scale(1.05);
-            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.4) !important;
+            transform: scale(1.1);
+            box-shadow: 0 25px 50px rgba(16, 185, 129, 0.5) !important;
+            border: 2px solid rgba(255, 255, 255, 0.3) !important;
+        }
+
+        .appointment-selected .absolute {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%) !important;
+        }
+
+        /* Disable pointer events after selection */
+        .pointer-events-none {
+            pointer-events: none !important;
+        }
+
+        /* Enhanced hover effects */
+        .appointment-card:hover {
+            transform: translateY(-8px) scale(1.05);
+        }
+
+        .appointment-card:hover .text-4xl {
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
         }
     </style>
 </head>
@@ -318,41 +337,42 @@
         <section id="appointment-suggestions" class="mb-16 hidden">
             <div class="apple-card rounded-2xl p-8 md:p-10">
                 <h2 class="text-4xl font-bold text-gray-900 mb-8 text-center tracking-tight">Terminvorschläge</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 md:gap-6 max-w-7xl mx-auto" id="appointment-cards">
-                    <div class="appointment-card apple-card rounded-xl p-6 text-center cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-xl group" data-time="morgen-09">
-                        <div class="text-3xl mb-3 group-hover:scale-110 transition-transform duration-200">📅</div>
-                        <h3 class="font-semibold text-xl mb-2 text-gray-900">Morgen</h3>
-                        <p class="text-gray-600 font-medium">09:00–11:00 Uhr</p>
-                        <p class="text-sm text-gray-500 mt-3">Elektriker-Team</p>
-                        <div class="mt-4 text-xs text-blue-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity">Jetzt buchen</div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto" id="appointment-cards">
+                    <div class="appointment-card apple-card rounded-2xl p-8 text-center cursor-pointer transition-all duration-500 hover:scale-110 hover:shadow-2xl group relative overflow-hidden" data-time="morgen-09">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="relative z-10">
+                            <div class="text-4xl mb-4 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500">📅</div>
+                            <h3 class="font-bold text-2xl mb-3 text-gray-900 group-hover:text-blue-600 transition-colors duration-300">Morgen</h3>
+                            <p class="text-gray-600 font-semibold text-lg">09:00–11:00 Uhr</p>
+                            <p class="text-sm text-gray-500 mt-4 font-medium">Elektriker-Team</p>
+                            <div class="mt-6 px-4 py-2 bg-blue-600 text-white rounded-full text-sm font-semibold opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                                Jetzt buchen
+                            </div>
+                        </div>
                     </div>
-                    <div class="appointment-card apple-card rounded-xl p-6 text-center cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-xl group" data-time="morgen-14">
-                        <div class="text-3xl mb-3 group-hover:scale-110 transition-transform duration-200">🔌</div>
-                        <h3 class="font-semibold text-xl mb-2 text-gray-900">Morgen</h3>
-                        <p class="text-gray-600 font-medium">14:00–16:00 Uhr</p>
-                        <p class="text-sm text-gray-500 mt-3">Installateur</p>
-                        <div class="mt-4 text-xs text-blue-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity">Jetzt buchen</div>
+                    <div class="appointment-card apple-card rounded-2xl p-8 text-center cursor-pointer transition-all duration-500 hover:scale-110 hover:shadow-2xl group relative overflow-hidden" data-time="uebermorgen-13">
+                        <div class="absolute inset-0 bg-gradient-to-br from-green-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="relative z-10">
+                            <div class="text-4xl mb-4 group-hover:scale-125 group-hover:-rotate-12 transition-all duration-500">🛠️</div>
+                            <h3 class="font-bold text-2xl mb-3 text-gray-900 group-hover:text-green-600 transition-colors duration-300">Übermorgen</h3>
+                            <p class="text-gray-600 font-semibold text-lg">13:00–16:00 Uhr</p>
+                            <p class="text-sm text-gray-500 mt-4 font-medium">Sanitär-Monteur</p>
+                            <div class="mt-6 px-4 py-2 bg-green-600 text-white rounded-full text-sm font-semibold opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                                Jetzt buchen
+                            </div>
+                        </div>
                     </div>
-                    <div class="appointment-card apple-card rounded-xl p-6 text-center cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-xl group" data-time="uebermorgen-09">
-                        <div class="text-3xl mb-3 group-hover:scale-110 transition-transform duration-200">🛠️</div>
-                        <h3 class="font-semibold text-xl mb-2 text-gray-900">Übermorgen</h3>
-                        <p class="text-gray-600 font-medium">09:00–12:00 Uhr</p>
-                        <p class="text-sm text-gray-500 mt-3">Sanitär-Spezialist</p>
-                        <div class="mt-4 text-xs text-blue-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity">Jetzt buchen</div>
-                    </div>
-                    <div class="appointment-card apple-card rounded-xl p-6 text-center cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-xl group" data-time="uebermorgen-13">
-                        <div class="text-3xl mb-3 group-hover:scale-110 transition-transform duration-200">🪛</div>
-                        <h3 class="font-semibold text-xl mb-2 text-gray-900">Übermorgen</h3>
-                        <p class="text-gray-600 font-medium">13:00–16:00 Uhr</p>
-                        <p class="text-sm text-gray-500 mt-3">Allround-Monteur</p>
-                        <div class="mt-4 text-xs text-blue-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity">Jetzt buchen</div>
-                    </div>
-                    <div class="appointment-card apple-card rounded-xl p-6 text-center cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-xl group sm:col-span-2 lg:col-span-3 xl:col-span-1 xl:col-start-3" data-time="freitag-08">
-                        <div class="text-3xl mb-3 group-hover:scale-110 transition-transform duration-200">🎨</div>
-                        <h3 class="font-semibold text-xl mb-2 text-gray-900">Freitag</h3>
-                        <p class="text-gray-600 font-medium">08:00–11:00 Uhr</p>
-                        <p class="text-sm text-gray-500 mt-3">Maler & Bodenleger</p>
-                        <div class="mt-4 text-xs text-blue-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity">Jetzt buchen</div>
+                    <div class="appointment-card apple-card rounded-2xl p-8 text-center cursor-pointer transition-all duration-500 hover:scale-110 hover:shadow-2xl group relative overflow-hidden" data-time="freitag-08">
+                        <div class="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="relative z-10">
+                            <div class="text-4xl mb-4 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500">🎨</div>
+                            <h3 class="font-bold text-2xl mb-3 text-gray-900 group-hover:text-orange-600 transition-colors duration-300">Freitag</h3>
+                            <p class="text-gray-600 font-semibold text-lg">08:00–10:00 Uhr</p>
+                            <p class="text-sm text-gray-500 mt-4 font-medium">Maler-Team</p>
+                            <div class="mt-6 px-4 py-2 bg-orange-600 text-white rounded-full text-sm font-semibold opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                                Jetzt buchen
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -741,25 +761,42 @@
 
             // Add click handlers
             document.querySelectorAll('.appointment-card').forEach(card => {
-                card.addEventListener('click', function() {
+                card.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    // Prevent multiple clicks
+                    if (this.classList.contains('appointment-selected')) {
+                        return;
+                    }
+
                     // Remove selected class from all cards
                     document.querySelectorAll('.appointment-card').forEach(c => {
                         c.classList.remove('appointment-selected');
-                        c.style.pointerEvents = 'none';
+                        c.classList.add('pointer-events-none');
                     });
 
                     // Add success styling to selected card
                     this.classList.add('appointment-selected');
+                    this.classList.remove('pointer-events-none');
 
                     selectedTimeSlot = this.dataset.time;
 
                     // Animate selection and proceed
                     gsap.to(this, {
-                        scale: 1.1,
-                        duration: 0.3,
+                        scale: 1.15,
+                        duration: 0.4,
                         ease: "back.out(1.7)",
                         onComplete: () => {
-                            setTimeout(showConfirmation, 1000);
+                            // Add a subtle pulse animation
+                            gsap.to(this, {
+                                scale: 1.1,
+                                duration: 0.2,
+                                ease: "power2.inOut",
+                                onComplete: () => {
+                                    setTimeout(showConfirmation, 800);
+                                }
+                            });
                         }
                     });
                 });
@@ -867,10 +904,8 @@
         function getTimeSlotText(timeSlot) {
             const timeSlots = {
                 'morgen-09': 'Morgen 09:00–11:00 Uhr',
-                'morgen-14': 'Morgen 14:00–16:00 Uhr',
-                'uebermorgen-09': 'Übermorgen 09:00–12:00 Uhr',
                 'uebermorgen-13': 'Übermorgen 13:00–16:00 Uhr',
-                'freitag-08': 'Freitag 08:00–11:00 Uhr'
+                'freitag-08': 'Freitag 08:00–10:00 Uhr'
             };
             return timeSlots[timeSlot] || 'Unbekannt';
         }
